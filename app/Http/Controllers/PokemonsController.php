@@ -23,7 +23,6 @@ class PokemonsController extends Controller
     public function index(Request $request)
     {
         $pokemons = Pokemon::orderBy('order')->paginate(20);
-
         # Since we're expecting third party apps to
         # make request to this "api/pokemons" endpoint,
         # we're checking if it's an api request or a http request
@@ -41,9 +40,8 @@ class PokemonsController extends Controller
         return redirect()->route('index')->with('success', 'created successfully');
     }
 
-    public function show(Request $request)
+    public function show($id)
     {
-        $id = $request->id;
         $pokemon = Pokemon::findOrFail($id);
         if (RequestAlice::wantsJson()) {
             # Serialize the pokemon object
