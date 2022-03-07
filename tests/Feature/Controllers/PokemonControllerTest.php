@@ -37,4 +37,9 @@ class PokemonControllerTest extends TestCase
 
         $response->assertStatus(ResponseAlias::HTTP_OK);
     }
+
+    public function test_validation_when_creating_pokemon()
+    {
+
+    }
 }
