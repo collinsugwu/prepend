@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\SessionsController;
+use App\Http\Controllers\PokemonsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/login', [SessionsController::class, 'login']);
+Route::group(['middleware' => 'auth:sanctum'], function (){
+    Route::get('/pokemons', [PokemonsController::class, 'index']);
+    Route::get('/pokemons/{id}', [PokemonsController::class, 'show']);
+});
+
 
